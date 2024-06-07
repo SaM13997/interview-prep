@@ -6,18 +6,19 @@ import {
 	ScrollRestoration,
 	isRouteErrorResponse,
 	useRouteError,
-} from "@remix-run/react";
+} from '@remix-run/react'
 
-import { GlobalPendingIndicator } from "@/components/global-pending-indicator";
-import { Header } from "@/components/header";
+import { GlobalPendingIndicator } from '@/components/global-pending-indicator'
+import { Header } from '@/components/header'
 import {
 	ThemeSwitcherSafeHTML,
 	ThemeSwitcherScript,
-} from "@/components/theme-switcher";
+} from '@/components/theme-switcher'
 
-import "./globals.css";
+import './globals.css'
 
 function App({ children }: { children: React.ReactNode }) {
+
 	return (
 		<ThemeSwitcherSafeHTML lang="en">
 			<head>
@@ -27,15 +28,15 @@ function App({ children }: { children: React.ReactNode }) {
 				<Links />
 				<ThemeSwitcherScript />
 			</head>
-			<body>
-				<GlobalPendingIndicator />
-				<Header />
-				{children}
-				<ScrollRestoration />
-				<Scripts />
-			</body>
+				<body>
+					<GlobalPendingIndicator />
+					<Header />
+					{children}
+					<ScrollRestoration />
+					<Scripts />
+				</body>
 		</ThemeSwitcherSafeHTML>
-	);
+	)
 }
 
 export default function Root() {
@@ -43,22 +44,22 @@ export default function Root() {
 		<App>
 			<Outlet />
 		</App>
-	);
+	)
 }
 
 export function ErrorBoundary() {
-	const error = useRouteError();
-	let status = 500;
-	let message = "An unexpected error occurred.";
+	const error = useRouteError()
+	let status = 500
+	let message = 'An unexpected error occurred.'
 	if (isRouteErrorResponse(error)) {
-		status = error.status;
+		status = error.status
 		switch (error.status) {
 			case 404:
-				message = "Page Not Found";
-				break;
+				message = 'Page Not Found'
+				break
 		}
 	} else {
-		console.error(error);
+		console.error(error)
 	}
 
 	return (
@@ -68,5 +69,5 @@ export function ErrorBoundary() {
 				<p>{message}</p>
 			</div>
 		</App>
-	);
+	)
 }
